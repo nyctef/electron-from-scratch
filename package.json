@@ -16,5 +16,9 @@
     "url": "https://github.com/nyctef/electron-from-scratch/issues"
   },
   "homepage": "https://github.com/nyctef/electron-from-scratch#readme",
-  "private": true
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^4.0.4"
+  }
 }
