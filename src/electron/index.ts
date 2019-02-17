@@ -8,5 +8,5 @@ app.on('ready', () => {
   window.setMenu(null);
 
   // load a website to display
-  window.loadUrl(`http://example.com`);
+  window.loadURL(`http://example.com`);
 });
