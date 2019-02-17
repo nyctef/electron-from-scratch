@@ -20,6 +20,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "electron": "^4.0.4"
+    "electron": "^4.0.4",
+    "typescript": "^3.3.3"
   }
 }
