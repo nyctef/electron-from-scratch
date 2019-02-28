@@ -2,6 +2,7 @@
 
 // pull in the 'path' module from node
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // export the configuration as an object
 module.exports = {
@@ -30,5 +31,11 @@ module.exports = {
     // specify certain file extensions to get automatically appended to imports
     // ie we can write `import 'index'` instead of `import 'index.ts'`
     extensions: ['.ts', '.tsx', '.js']
-  }
+  },
+  plugins: [
+    // This reads index.html from src, injects a <script> tag for index.js, and then copies it to the output dir
+    new HtmlWebpackPlugin({
+      template: 'src/website/index.html'
+    })
+  ]
 };
