@@ -7,6 +7,5 @@ app.on('ready', () => {
   // hide the default menu bar that comes with the browser window
   window.setMenu(null);
 
-  // load a website to display
-  window.loadURL(`http://example.com`);
+  window.loadURL(`file://${__dirname}/../website/index.html`);
 });
