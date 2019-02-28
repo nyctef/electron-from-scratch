@@ -22,6 +22,8 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
+    "@types/react": "^16.8.5",
+    "@types/react-dom": "^16.8.2",
     "electron": "^4.0.4",
     "typescript": "^3.3.3"
   }
