@@ -1,0 +1,20 @@
+- introducing 'reducer' concept
+- function of (state, action) -> next state
+
+- we can store our entire UI state in one (or many) of these!
+- basically event-sourcing for the desktop
+
+- nice properties:
+  - UI state becomes deterministic
+  - reducers are pure functions, so extremely easy to unit-test
+  - all possible UI states / actions visible at a glance
+  - easy to create discriminated union for app state
+
+- some disadvantages:
+  - kind of arbitrary distinction between action/reducer logic
+  - overall code flow becomes a bit less obvious
+
+- react hooks provide `useReducer`, which gets us started
+- for a full app we'd probably use 'redux', where the idea originated
+- redux has lots of plugins for things like full UI logging ... and time travel!
+  - these are only possible because of event sourcing and immutable/pure state
