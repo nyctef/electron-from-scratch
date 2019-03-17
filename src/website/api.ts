@@ -70,7 +70,7 @@ interface WorkspaceCreateRequest {
 }
 
 interface WorkspaceCreateResult {
-  id: string;
+  workspaceId: string;
 }
 
 const createWorkspace = (

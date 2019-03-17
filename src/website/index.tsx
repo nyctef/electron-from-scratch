@@ -25,13 +25,13 @@ const App = () => {
         name: workspaceName
       });
 
-      const workspaceId = workspaceResult.id;
+      const workspaceId = workspaceResult.workspaceId;
       console.log({ workspaceId });
 
       const projects = await api.getProjectsFromWorkspace(workspaceId);
       console.log({ projects });
       const migrations = await api.getMigrationsFromProject(
-        workspaceResult.id,
+        workspaceResult.workspaceId,
         projects[0]
       );
       console.log({ migrations });

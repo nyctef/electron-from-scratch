@@ -19,36 +19,44 @@ namespace server.Controllers
         public string Name { get; }
     }
 
+    public static class WorkspacesRepository
+    {
+        public static Dictionary<string, Workspace> Workspaces = new Dictionary<string, Workspace>();
+    }
+
     [Route("api/v1/workspaces")]
     [ApiController]
     public class WorkspacesController : ControllerBase
     {
-        private Dictionary<string, Workspace> _workspaces = new Dictionary<string, Workspace>();
+
 
         [HttpGet("{id}")]
-        public ActionResult<Workspace> Get(string id) => _workspaces[id];
+        public ActionResult<Workspace> Get(string id) => WorkspacesRepository.Workspaces[id];
 
         [HttpPost]
-        public ActionResult<string> Post([FromBody] WorkspaceCreateRequest request)
+        public ActionResult<object> Post([FromBody] WorkspaceCreateRequest request)
         {
             var id = Guid.NewGuid().ToString();
-            _workspaces[id] = new Workspace(
+
+            WorkspacesRepository.Workspaces[id] = new Workspace(
                 request.Name,
                 request.FolderPath,
                 new Dictionary<string, Project> { { Guid.NewGuid().ToString(), new Project() } });
-            return id;
+
+            Console.WriteLine($"Created workspace with id {id}");
+            return new { workspaceId = id };
         }
 
         [HttpGet("{workspaceId}/projects")]
         public ActionResult<IEnumerable<string>> GetProjectIds(string workspaceId)
         {
-            return _workspaces[workspaceId].Projects.Values.Cast<string>().ToList();
+            return WorkspacesRepository.Workspaces[workspaceId].Projects.Keys.Cast<string>().ToList();
         }
 
         [HttpGet("{workspaceId}/projects/{projectId}/migrations")]
         public ActionResult<IEnumerable<Migration>> GetMigrations(string workspaceId, string projectId)
         {
-            return _workspaces[workspaceId].Projects[projectId].Migrations.ToList();
+            return WorkspacesRepository.Workspaces[workspaceId].Projects[projectId].Migrations.ToList();
         }
     }
 }
