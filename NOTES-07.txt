@@ -1,0 +1,23 @@
+Commands:
+
+> dotnet new webapi
+> npm run build-server
+> npm run run-server
+
+- we could probably build the entire application with electron/node
+- however we tend to prefer writing code in C#
+- we'll run a .NET process to do most of the heavy lifting and talk to it somehow
+  - web API (fairly natural, but heavyweight)
+  - json-rpc over stdio (cool alternative, used for vscode extensions)
+  - one-shot commandline (simpler, can't keep state in memory)
+  - edge.js (easiest, but a bit magic + not well supported)
+
+- `dotnet new webapi` quickly inits a webserver project for us
+- filled in some stub code for a 'workspaces/projects/migrations' controller
+
+- electron can intercept + handle web requests coming from the browser process
+  - eg ignore certificate errors (not ideal but works)
+
+- our react app now has some more complicated logic with useState
+  
+  
