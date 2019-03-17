@@ -19,20 +19,27 @@ const App = () => {
   const [workspaceName, setWorkspaceName] = useState<string>('');
 
   const createWorkspaceAndLoadMigrations = async () => {
-    const workspaceResult = await api.createWorkspace({
-      folderPath: '/c/workspaces/whatever',
-      name: workspaceName
-    });
+    try {
+      const workspaceResult = await api.createWorkspace({
+        folderPath: '/c/workspaces/whatever',
+        name: workspaceName
+      });
 
-    const workspaceId = workspaceResult.id;
+      const workspaceId = workspaceResult.id;
+      console.log({ workspaceId });
 
-    const projects = await api.getProjectsFromWorkspace(workspaceId);
-    const migrations = await api.getMigrationsFromProject(
-      workspaceResult.id,
-      projects[0]
-    );
+      const projects = await api.getProjectsFromWorkspace(workspaceId);
+      console.log({ projects });
+      const migrations = await api.getMigrationsFromProject(
+        workspaceResult.id,
+        projects[0]
+      );
+      console.log({ migrations });
 
-    setMigrations(migrations);
+      setMigrations(migrations);
+    } catch (e) {
+      console.error('Error creating workspace', e);
+    }
   };
 
   return (
