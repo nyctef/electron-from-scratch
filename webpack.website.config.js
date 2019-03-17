@@ -24,7 +24,18 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader'
-      }
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+      },
+      { test: /\.jpe?g$|\.svg$|\.gif$|\.png$/i, loader: 'url-loader' },
+      { test: /\.otf$|\.woff$|\.woff2$|\.eot$|\.ttf$/, loader: 'url-loader' },
+      { test: /\.ico$|_icon\.png$/i, loader: 'url-loader' }
     ]
   },
   resolve: {

@@ -21,16 +21,24 @@
   "homepage": "https://github.com/nyctef/electron-from-scratch#readme",
   "private": true,
   "dependencies": {
+    "honeycomb-web-toolkit": "git+https://github.com/red-gate/honeycomb-web-toolkit.git",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
   },
   "devDependencies": {
     "@types/react": "^16.8.5",
     "@types/react-dom": "^16.8.2",
+    "autoprefixer": "^9.4.10",
+    "css-loader": "^2.1.1",
     "electron": "^4.0.4",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3",
+    "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
   }

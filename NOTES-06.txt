@@ -1,0 +1,14 @@
+Commands:
+
+> npm install --save-dev sass-loader node-sass css-loader postcss-loader autoprefixer style-loader url-loader
+> npm install --save git+https://github.com/red-gate/honeycomb-web-toolkit.git
+
+- getting styling working is complicated!
+- honeycomb-web-toolkit comes as a set of sass files
+  - we need to compile these to plain CSS
+- sass files get their own little pipeline configured in the webpack config
+  - we also need to handle icons/images/fonts/etc
+- we need to set some variables to get paths to resolve correctly
+
+- we extract some more react components to style things
+  - it's nice how these compose together

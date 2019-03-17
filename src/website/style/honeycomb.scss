@@ -1,0 +1,12 @@
+// TODO: ideally we'd configure node-sass / webpack to resolve these automatically
+$hc-dir: '../../../node_modules/honeycomb-web-toolkit/src/';
+
+$hc-icon-font-dir: $hc-dir + 'icons/vendor/redgate/';
+$hc-navigation-images-dir: $hc-dir + 'navigation/images/';
+$hc-font-dir: $hc-dir + 'type/vendor/';
+$hc-checkbox-loading-icon-dir: $hc-dir + 'base/images';
+$slick-loader-path: $hc-dir + 'carousel/vendor/slick/images/';
+$fancyboxImagesDir: $hc-dir + 'lightbox/vendor/images/fancybox';
+$hc-sharing-images-dir: $hc-dir + 'sharing/images';
+
+@import 'node_modules/honeycomb-web-toolkit/src/honeycomb.scss';
