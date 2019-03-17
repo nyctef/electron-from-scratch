@@ -4,11 +4,15 @@ namespace server.StubBackend
 {
     public class Workspace
     {
-        public Workspace(Dictionary<string, Project> projects)
+        public Workspace(string name, string folder, Dictionary<string, Project> projects)
         {
+            Name = name;
+            Folder = folder;
             Projects = projects;
         }
 
+        public string Name { get; }
+        public string Folder { get; }
         public Dictionary<string, Project> Projects { get; }
     }
 

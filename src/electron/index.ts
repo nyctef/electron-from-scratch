@@ -9,3 +9,12 @@ app.on('ready', () => {
 
   window.loadURL(`file://${__dirname}/../website/index.html`);
 });
+
+app.on(
+  'certificate-error',
+  (event, webContents, url, error, certificate, callback) => {
+    // todo: check certificate.fingerprint is what we expect
+    event.preventDefault();
+    callback(true); // everything is fine
+  }
+);

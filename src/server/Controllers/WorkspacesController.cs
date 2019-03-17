@@ -7,23 +7,35 @@ using server.StubBackend;
 
 namespace server.Controllers
 {
-    [Route("api/workspaces")]
+    public class WorkspaceCreateRequest
+    {
+        public WorkspaceCreateRequest(string folderPath, string name)
+        {
+            FolderPath = folderPath;
+            Name = name;
+        }
+
+        public string FolderPath { get; }
+        public string Name { get; }
+    }
+
+    [Route("api/v1/workspaces")]
     [ApiController]
     public class WorkspacesController : ControllerBase
     {
         private Dictionary<string, Workspace> _workspaces = new Dictionary<string, Workspace>();
 
-        [HttpGet]
-        public ActionResult<Dictionary<string, Workspace>> Get() => _workspaces;
-
         [HttpGet("{id}")]
         public ActionResult<Workspace> Get(string id) => _workspaces[id];
 
         [HttpPost]
-        public ActionResult<string> Post([FromBody] Workspace value)
+        public ActionResult<string> Post([FromBody] WorkspaceCreateRequest request)
         {
             var id = Guid.NewGuid().ToString();
-            _workspaces[id] = value;
+            _workspaces[id] = new Workspace(
+                request.Name,
+                request.FolderPath,
+                new Dictionary<string, Project> { { Guid.NewGuid().ToString(), new Project() } });
             return id;
         }
 
