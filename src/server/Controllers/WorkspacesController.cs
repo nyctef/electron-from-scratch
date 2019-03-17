@@ -34,8 +34,10 @@ namespace server.Controllers
         public ActionResult<Workspace> Get(string id) => WorkspacesRepository.Workspaces[id];
 
         [HttpPost]
-        public ActionResult<object> Post([FromBody] WorkspaceCreateRequest request)
+        public async Task<ActionResult<object>> Post([FromBody] WorkspaceCreateRequest request)
         {
+            await Task.Delay(200);
+
             var id = Guid.NewGuid().ToString();
 
             WorkspacesRepository.Workspaces[id] = new Workspace(
@@ -48,14 +50,16 @@ namespace server.Controllers
         }
 
         [HttpGet("{workspaceId}/projects")]
-        public ActionResult<IEnumerable<string>> GetProjectIds(string workspaceId)
+        public async Task<ActionResult<IEnumerable<string>>> GetProjectIds(string workspaceId)
         {
+            await Task.Delay(200);
             return WorkspacesRepository.Workspaces[workspaceId].Projects.Keys.Cast<string>().ToList();
         }
 
         [HttpGet("{workspaceId}/projects/{projectId}/migrations")]
-        public ActionResult<IEnumerable<Migration>> GetMigrations(string workspaceId, string projectId)
+        public async Task<ActionResult<IEnumerable<Migration>>> GetMigrations(string workspaceId, string projectId)
         {
+            await Task.Delay(200);
             return WorkspacesRepository.Workspaces[workspaceId].Projects[projectId].Migrations.ToList();
         }
     }
