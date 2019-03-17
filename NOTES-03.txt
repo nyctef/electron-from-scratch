@@ -1,0 +1,6 @@
+Commands:
+
+> npm run build:watch
+
+- quick fix to index.ts
+- watch builds: they're much faster, but also less reliable
