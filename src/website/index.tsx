@@ -11,6 +11,8 @@ import {
 } from './components';
 import * as api from './api';
 import { useState } from 'react';
+import { appReducer, initialState, AppState, AppAction } from './appReducer';
+import { createWorkspaceAndLoadMigrations } from './actionCreators';
 
 const app = document.getElementById('app');
 
@@ -52,41 +54,37 @@ const MigrationsDisplayPage: React.FunctionComponent<{
   </>
 );
 
-const App = () => {
-  const [migrations, setMigrations] = useState<api.Migration[] | null>(null);
+const WorkspaceProgressPage: React.FunctionComponent<{
+  message: string;
+}> = props => (
+  <>
+    <h3>Creating workspace:</h3>
+    {props.message}
+  </>
+);
 
-  const createWorkspaceAndLoadMigrations = async (workspaceName: string) => {
-    try {
-      const workspaceResult = await api.createWorkspace({
-        folderPath: '/c/workspaces/whatever',
-        name: workspaceName
-      });
+const AppContents: React.FunctionComponent = props => {
+  const [appState, dispatch] = React.useReducer(appReducer, initialState);
 
-      const workspaceId = workspaceResult.workspaceId;
-      console.log({ workspaceId });
-
-      const projects = await api.getProjectsFromWorkspace(workspaceId);
-      console.log({ projects });
-      const migrations = await api.getMigrationsFromProject(
-        workspaceResult.workspaceId,
-        projects[0]
+  switch (appState.page) {
+    case 'INPUT_WORKSPACE':
+      return (
+        <WorkspaceInputPage
+          onSubmit={name => createWorkspaceAndLoadMigrations(dispatch, name)}
+        />
       );
-      console.log({ migrations });
+    case 'WAITING_FOR_WORKSPACE':
+      return <WorkspaceProgressPage message={appState.progressMessage} />;
+    case 'DISPLAY_MIGRATIONS':
+      return <MigrationsDisplayPage migrations={appState.migrations} />;
+  }
+};
 
-      setMigrations(migrations);
-    } catch (e) {
-      console.error('Error creating workspace', e);
-    }
-  };
-
+const App = () => {
   return (
     <Centered>
       <GrayBox width={400}>
-        {!migrations ? (
-          <WorkspaceInputPage onSubmit={createWorkspaceAndLoadMigrations} />
-        ) : (
-          <MigrationsDisplayPage migrations={migrations} />
-        )}
+        <AppContents />
       </GrayBox>
     </Centered>
   );
