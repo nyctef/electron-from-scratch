@@ -1,0 +1,16 @@
+- we want the electron app to manage the webserver
+  - we can't get the user to run both in parallel
+
+- since we're running a webserver we need to worry about ports
+  - just picking a random port will work ... most of the time
+  - binding to port 0 means "pick an available port"
+  - but then the website doesn't know which port to send requests to!
+
+- we need the electron process to:
+  - start the webserver
+  - figure out what port the webserver is running on
+  - tell the website process where to send requests
+
+- we can also use this process to pass around an auth token
+  - this is marginally more secure
+  - we use JWT, which is a neat piece of tech
