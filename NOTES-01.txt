@@ -1,0 +1,10 @@
+Commands:
+
+> npm run start
+
+- folder structure:
+  - src/ and out/ folders
+  - electron/website split
+  - src/electron/index.js is our entry point
+
+- 'start' script which runs electron and points it at index.js
