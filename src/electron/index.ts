@@ -5,8 +5,7 @@ app.on('ready', () => {
   const window = new BrowserWindow({ width: 800, height: 600 });
 
   // hide the default menu bar that comes with the browser window
-  window.setMenu(null);
+  window.setMenuBarVisibility(false);
 
-  // load a website to display
-  window.loadURL(`http://example.com`);
+  window.loadURL(`file://${__dirname}/../website/index.html`);
 });

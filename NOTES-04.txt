@@ -1,0 +1,6 @@
+- want to load a local html file instead of an online website
+- added some basic interactivity
+- use `setMenuBarVisibility` to hide the electron menu bar
+  - pretending we're not a browser
+  - the keyboard shortcuts still exist, though (devtools are handy!)
+- we can totally build apps with vanilla js, but it can get messy very quickly
