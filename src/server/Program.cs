@@ -23,8 +23,7 @@ namespace server
             WebHost.CreateDefaultBuilder(args)
                    .UseKestrel((context, options) =>
                         {
-                            var port = context.HostingEnvironment.IsDevelopment() ? 5001 : 0;
-                            options.Listen(IPAddress.Loopback, port);
+                            options.Listen(IPAddress.Loopback, 0);
                         })
                 .UseStartup<Startup>();
     }
