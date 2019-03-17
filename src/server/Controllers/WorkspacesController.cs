@@ -28,9 +28,15 @@ namespace server.Controllers
         }
 
         [HttpGet("{workspaceId}/projects")]
-        public ActionResult<Dictionary<string, Project>> GetProjects(string workspaceId)
+        public ActionResult<IEnumerable<string>> GetProjectIds(string workspaceId)
         {
-            return _workspaces[workspaceId].Projects;
+            return _workspaces[workspaceId].Projects.Values.Cast<string>().ToList();
+        }
+
+        [HttpGet("{workspaceId}/projects/{projectId}/migrations")]
+        public ActionResult<IEnumerable<Migration>> GetMigrations(string workspaceId, string projectId)
+        {
+            return _workspaces[workspaceId].Projects[projectId].Migrations.ToList();
         }
     }
 }
