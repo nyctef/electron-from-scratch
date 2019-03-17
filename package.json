@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.website.config.js --config webpack.electron.config.js",
     "build:watch": "npm run build -- --watch",
+    "build-server": "dotnet publish ./src/server/ --output ../../out/server",
+    "run-server": "dotnet ./out/server/server.dll",
     "start": "electron ./out/electron/index.js"
   },
   "repository": {
