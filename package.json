@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && cp ./src/website/index.html ./out/website/index.html",
+    "build": "webpack --config webpack.website.config.js --config webpack.electron.config.js",
     "build:watch": "npm run build -- --watch",
     "start": "electron ./out/electron/index.js"
   },
@@ -20,9 +20,18 @@
   },
   "homepage": "https://github.com/nyctef/electron-from-scratch#readme",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
   "devDependencies": {
+    "@types/react": "^16.8.5",
+    "@types/react-dom": "^16.8.2",
     "electron": "^4.0.4",
-    "typescript": "^3.3.3"
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   }
 }

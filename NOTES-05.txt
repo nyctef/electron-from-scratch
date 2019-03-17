@@ -1,0 +1,24 @@
+Commands:
+
+> npm install --save-dev webpack webpack-cli ts-loader
+> npm install --save react react-dom
+> npm install --save-dev @types/react @types/react-dom
+
+- introducing react and webpack
+  - react is our UI library
+  - webpack takes various source files (including react) and packs them together
+  - this is a big jump in complexity for our build step
+
+- separate webpack configs for electron and website processes
+  - one runs in a browser, the other runs in node
+  - the available modules and module systems work differently for each
+  - webpack configures the entire build all in one place
+    - this is unlike some other tools which create a pipeline of build steps
+
+- react lets us describe what we want the UI to look like, and then does efficient updates for us
+  - much cleaner than manipulating the html DOM directly
+  - many many excellent resources for react on the web
+  - we use JSX as the templating language
+    - like writing inline HTML in UI components
+    - a bit weird but it works well
+    - needs a tsconfig update
