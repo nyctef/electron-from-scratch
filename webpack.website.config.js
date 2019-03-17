@@ -16,6 +16,7 @@ module.exports = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'out/website')
   },
+  target: 'electron-renderer',
   module: {
     // rules tell webpack how to handle certain types of files
     rules: [

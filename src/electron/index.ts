@@ -1,6 +1,10 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
+import { runWebserver } from './webserver';
 
-app.on('ready', () => {
+console.log('starting webserver task...');
+const runWebserverTask = runWebserver();
+
+app.on('ready', async () => {
   // once electron has started up, create a window.
   const window = new BrowserWindow({ width: 800, height: 600 });
 
@@ -8,6 +12,15 @@ app.on('ready', () => {
   window.setMenuBarVisibility(false);
 
   window.loadURL(`file://${__dirname}/../website/index.html`);
+
+  console.log('waiting for backend server to start up...');
+  const webserverDetails = await runWebserverTask;
+
+  console.log('waiting for browser to be ready for webserver details...');
+  ipcMain.on('ready-for-webserver-started', (event: any) => {
+    console.log('webserver start completed. Sending details to browser...');
+    event.sender.send('webserver-started', webserverDetails);
+  });
 });
 
 app.on(
