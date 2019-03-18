@@ -1,0 +1,17 @@
+Intro: what is electron?
+- easy cross-platform desktop apps
+- chromium browser hosted in a node.js process
+- we need to write code for both parts
+
+You can just download some boilerplate and get running quickly - we're going to go the slow way
+
+Commands:
+
+> npm init
+> npm install --save-dev electron
+
+- npm here acts as an equivalent combination of nuget, the csproj file, and a place to store build scripts.
+- --save vs --save-dev : dev dependencies are used at build time instead of runtime.
+  (the difference doesn't really matter to us since we're not building a package, but it's still a nice way of organising things)
+
+
