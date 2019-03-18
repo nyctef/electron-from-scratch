@@ -1,0 +1,12 @@
+Commands:
+
+> npm install --save-dev jest ts-jest jest-teamcity-reporter enzyme enzyme-adapter-react-16
+> npm install --save-dev @types/jest @types/enzyme @types/enzyme-adapter-react-16
+
+- we finally get to fill in our 'test' npm script!
+- we'll use jest as our NUnit equivalent
+- enzyme helps with testing react components
+- @types packages make typescript work
+
+- reducers are the easiest things to test, and the bulk of our UI/app logic should be there
+- we can test react components too, but 95% of them are dumb so it's not as useful

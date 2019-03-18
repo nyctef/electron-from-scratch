@@ -14,7 +14,7 @@ const Button: React.FunctionComponent<{
       `${props.disabled && 'button--disabled'}`
     }
     href="#"
-    onClick={props.onClick}
+    onClick={() => !props.disabled && props.onClick()}
   >
     {props.children}
   </a>
