@@ -1,0 +1,33 @@
+Other topics!
+
+- installed product / gui tests:
+  - spectron lets us run webdriver stuff on the website inside of electron
+  - works pretty well (standard gui test problems apply)
+
+- Packaging: bundling the electron app up into a redistributable bundle
+  - there are a few tools for this:
+    - electron-builder will create an installer with very slick autoupdate
+    - electron-packager does a bit less, but works with the RG installer
+
+- linting and formatting:
+  - we can use tslint/eslint to find a whole range of issues, similar to R#/sonarqube
+  - we use prettier to solve formatting arguments forever
+  - .editorconfig is also useful
+
+- source maps:
+  - these are like PDBs - they provide a map of compiled js back to original ts source
+  - chrome can use these when debugging
+  - webpack can make them for us
+
+- hot module replacement:
+  - we can live-reload some bits of our website without having to reload the entire page
+  - very useful for tweaking UI bits
+  - also try test benches
+
+- libraries we explicitly didn't use:
+  - react-router is a good example:
+    - it's a standard library for React SPAs, but
+    - we can go a long way with very simple discriminated union for pages
+    - we don't need url/history management for an electron app
+    - it's good to keep redux as the source of truth
+  - always be deliberate about the libraries you pick
